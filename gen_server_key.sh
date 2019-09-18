@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Generate CA certificate and server certificate for Strongswan server.
+# Author: LnsooXD<LnsooXD@gmail.com>
+
 SS_CA_PRIVATE_KEY_PATH="private/strongswan-ca-private-key.pem"
 SS_CA_CERT_PATH="cacerts/strongswan-ca-cert.pem"
 
