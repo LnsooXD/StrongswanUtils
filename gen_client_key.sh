@@ -8,17 +8,17 @@ SS_CA_CERT_PATH="cacerts/strongswan-ca.cert.pem"
 
 # Parse organization from CA certificate.
 SS_CA_O=`strongswan pki \
-	--print \
-	--in "${SS_CA_CERT_PATH}" \
-	| \
-	awk -F '"' '/subject:/{ret = index($2, "C=");ret=substr($2,ret);split(ret,arr,",");split(arr[1],arr,"=");print arr[2]}'
+    --print \
+    --in "${SS_CA_CERT_PATH}" \
+    | \
+    awk -F '"' '/subject:/{ret = index($2, "C=");ret=substr($2,ret);split(ret,arr,",");split(arr[1],arr,"=");print arr[2]}'
 `
 # Parse CA common name from CA certificate.
 SS_CA_CN=`strongswan pki \
-	--print \
-	--in "${SS_CA_CERT_PATH}" \
-	| \
-	awk -F '"' '/subject:/{ret = index($2, "CN=");ret=substr($2,ret);split(ret,arr,",");split(arr[1],arr,"=");print arr[2]}'
+    --print \
+    --in "${SS_CA_CERT_PATH}" \
+    | \
+    awk -F '"' '/subject:/{ret = index($2, "CN=");ret=substr($2,ret);split(ret,arr,",");split(arr[1],arr,"=");print arr[2]}'
 `
 
 
@@ -70,39 +70,39 @@ CLIENT_CERT_PATH="certs/strongswan-client-${CLIENT_USER_NAME}.cert.pem"
 CLIENT_CERT_P12_CERT_PATH="p12-certs/strongswan-client-${CLIENT_USER_NAME}.cert.p12"
 
 strongswan pki \
-	--gen \
-	--type rsa \
-	--size ${KEY_SIZE} \
-	--outform pem \
-	> "${CLIENT_PRIVATE_KEY_PATH}"
+    --gen \
+    --type rsa \
+    --size ${KEY_SIZE} \
+    --outform pem \
+    > "${CLIENT_PRIVATE_KEY_PATH}"
 
 strongswan pki \
-	--pub \
-	--in "${CLIENT_PRIVATE_KEY_PATH}" \
-	--type rsa \
-	| \
+    --pub \
+    --in "${CLIENT_PRIVATE_KEY_PATH}" \
+    --type rsa \
+    | \
 strongswan pki \
-	--issue \
-	--lifetime ${KEY_LIFETIME} \
-	--cakey "${SS_CA_PRIVATE_KEY_PATH}" \
-	--cacert "${SS_CA_CERT_PATH}" \
-	--dn "C=${DN_C}, O=${SS_CA_O}, CN=${CLIENT_USER_EMAIL}" \
-	--san ${CLIENT_USER_EMAIL} \
-	--outform pem \
-	> "${CLIENT_CERT_PATH}" \
+    --issue \
+    --lifetime ${KEY_LIFETIME} \
+    --cakey "${SS_CA_PRIVATE_KEY_PATH}" \
+    --cacert "${SS_CA_CERT_PATH}" \
+    --dn "C=${DN_C}, O=${SS_CA_O}, CN=${CLIENT_USER_EMAIL}" \
+    --san ${CLIENT_USER_EMAIL} \
+    --outform pem \
+    > "${CLIENT_CERT_PATH}" \
 
 echo "Client certificate for ${CLIENT_USER_NAME}:"
 strongswan pki \
-	--print \
-	--in "${CLIENT_CERT_PATH}"
+    --print \
+    --in "${CLIENT_CERT_PATH}"
 echo
 
 echo "Enter password to protect p12 cert for ${CLIENT_USER_NAME}"
 openssl pkcs12 \
-	-export \
-	-inkey "${CLIENT_PRIVATE_KEY_PATH}" \
-	-in "${CLIENT_CERT_PATH}" \
-	-name "${CLIENT_USER_NAME}'s VPN Certificate of ${SS_CA_CN}" \
-	-certfile "${SS_CA_CERT_PATH}" \
-	-caname "${SS_CA_CN}" \
-	-out "${CLIENT_CERT_P12_CERT_PATH}"
+    -export \
+    -inkey "${CLIENT_PRIVATE_KEY_PATH}" \
+    -in "${CLIENT_CERT_PATH}" \
+    -name "${CLIENT_USER_NAME}'s VPN Certificate of ${SS_CA_CN}" \
+    -certfile "${SS_CA_CERT_PATH}" \
+    -caname "${SS_CA_CN}" \
+    -out "${CLIENT_CERT_P12_CERT_PATH}"
