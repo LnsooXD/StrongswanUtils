@@ -3,18 +3,18 @@
 # Generate CA certificate and server certificate for Strongswan server.
 # Author: LnsooXD<LnsooXD@gmail.com>
 
-SS_CA_PRIVATE_KEY_PATH="private/strongswan-ca-private-key.pem"
-SS_CA_CERT_PATH="cacerts/strongswan-ca-cert.pem"
+SS_CA_PRIVATE_KEY_PATH="private/strongswan-ca.key.pem"
+SS_CA_CERT_PATH="cacerts/strongswan-ca.cert.pem"
 
-SS_SERVER_PRIVATE_KEY_PATH="private/strongswan-server-private-key.pem"
-SS_SERVER_CERT_PATH="certs/strongswan-server-cert.pem"
+SS_SERVER_PRIVATE_KEY_PATH="private/strongswan-server.key.pem"
+SS_SERVER_CERT_PATH="certs/strongswan-server.cert.pem"
 
 KEY_SIZE_DEFAULT=4096
 KEY_LIFETIME_DEFAULT=3650
 
 DN_DEFAULT_C=CN
 DN_DEFAULT_O=Lnsoo
-DN_DEFAULT_CA_CN="Lnsoo org"
+DN_DEFAULT_CA_CN="Lnsoo VPN Strongswan CA"
 DN_DEFAULT_CN=0.0.0.0
 
 read -p "Key size[${KEY_SIZE_DEFAULT}]:" KEY_SIZE

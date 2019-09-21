@@ -3,8 +3,8 @@
 # Generate client certificate for Strongswan client.
 # Author: LnsooXD<LnsooXD@gmail.com>
 
-SS_CA_PRIVATE_KEY_PATH="private/strongswan-ca-private-key.pem"
-SS_CA_CERT_PATH="cacerts/strongswan-ca-cert.pem"
+SS_CA_PRIVATE_KEY_PATH="private/strongswan-ca.key.pem"
+SS_CA_CERT_PATH="cacerts/strongswan-ca.cert.pem"
 
 # Parse organization from CA certificate.
 SS_CA_O=`strongswan pki \
@@ -65,9 +65,9 @@ mkdir -p certs &&\
 mkdir -p p12-certs
 
 
-CLIENT_PRIVATE_KEY_PATH="private/strongswan-client-${CLIENT_USER_NAME}-private-key.pem"
-CLIENT_CERT_PATH="certs/strongswan-client-${CLIENT_USER_NAME}-cert.pem"
-CLIENT_CERT_P12_CERT_PATH="p12-certs/strongswan-client-${CLIENT_USER_NAME}-cert.p12"
+CLIENT_PRIVATE_KEY_PATH="private/strongswan-client-${CLIENT_USER_NAME}.key.pem"
+CLIENT_CERT_PATH="certs/strongswan-client-${CLIENT_USER_NAME}.cert.pem"
+CLIENT_CERT_P12_CERT_PATH="p12-certs/strongswan-client-${CLIENT_USER_NAME}.cert.p12"
 
 strongswan pki \
 	--gen \
