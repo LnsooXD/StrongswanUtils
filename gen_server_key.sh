@@ -102,7 +102,7 @@ strongswan pki \
     --cakey "${SS_CA_PRIVATE_KEY_PATH}" \
     --cacert "${SS_CA_CERT_PATH}" \
     --dn "C=${DN_C}, O=${DN_O}, CN=${DN_CN}" \
-    --san ${DN_CN} \
+    --san "${DN_CN}" \
     --flag serverAuth \
     --flag ikeIntermediate \
     --outform pem \
