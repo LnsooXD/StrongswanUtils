@@ -100,12 +100,12 @@ strongswan pki \
     --issue \
     --lifetime ${KEY_LIFETIME_DEFAULT} \
     --cakey "${SS_CA_PRIVATE_KEY_PATH}" \
-	--cacert "${SS_CA_CERT_PATH}" \
-	--dn "C=${DN_C}, O=${DN_O}, CN=${DN_CN}" \
-	--san ${DN_CN} \
-	--flag serverAuth \
+    --cacert "${SS_CA_CERT_PATH}" \
+    --dn "C=${DN_C}, O=${DN_O}, CN=${DN_CN}" \
+    --san ${DN_CN} \
+    --flag serverAuth \
     --flag ikeIntermediate \
-	--outform pem \
+    --outform pem \
     > "${SS_SERVER_CERT_PATH}" \
 
 echo "VPN server cert at ${SS_SERVER_CERT_PATH}:"
