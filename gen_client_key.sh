@@ -80,7 +80,6 @@ strongswan pki \
 	--pub \
 	--in "${CLIENT_PRIVATE_KEY_PATH}" \
 	--type rsa \
-	--outform pem \
 	| \
 strongswan pki \
 	--issue \

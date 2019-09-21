@@ -22,7 +22,7 @@ read -p "Key lifetime (Days)[${KEY_LIFETIME_DEFAULT}]:" KEY_LIFETIME
 read -p "Country[${DN_DEFAULT_C}]:" DN_C
 read -p "Organization[${DN_DEFAULT_O}]:" DN_O
 read -p "CA common name[${DN_DEFAULT_CA_CN}]:" DN_CA_CN
-read -p "IP Or Domain[${DN_DEFAULT_CN}]:" DN_CN
+read -p "IP Or Host Name[${DN_DEFAULT_CN}]:" DN_CN
 
 KEY_SIZE=${KEY_SIZE:-${KEY_SIZE_DEFAULT}}
 KEY_LIFETIME=${KEY_LIFETIME:-${KEY_LIFETIME_DEFAULT}}
@@ -94,7 +94,6 @@ strongswan pki \
     --pub \
     --type rsa \
     --in "${SS_SERVER_PRIVATE_KEY_PATH}" \
-    --outform pem \
     | \
 strongswan pki \
     --issue \
